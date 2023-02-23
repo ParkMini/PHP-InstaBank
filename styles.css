@@ -1,0 +1,131 @@
+html, body { 
+    background-color: #f1f1f1;
+    padding:0;
+    margin:0;
+    width: 100%;
+    height: 100%;
+}
+
+#container{
+    display: flex;
+    justify-content: space-between;
+}
+
+#leftContents, #rightContents{
+    width:200px;
+    background-color: #fff;
+}
+
+#storyArea{
+    width:100%;
+    max-width: calc(600px - 16px);
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #dbdbdb;
+    padding:10px 7px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.storyItem {
+    /* background: green; */
+    width: 100px;
+    text-align: center;
+    margin:0 10px;
+}
+.storyItem > img {
+    width:85%;
+}
+.storyItem > h3,p,a,h4 {
+    line-height: 100%;
+    color:#333;
+    margin: 7px 0;
+    padding:0;
+}
+.storyItem:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+.storyItem img {
+    width:80px;
+    height:80px;
+    border-radius: 100%;
+    border: 4px solid #fff;
+}
+
+.storyItemIsRead {
+    border: 4px solid plum !important;
+}
+
+#feedArea {
+    width: 100%;
+    max-width: 600px;
+    margin: 15px 0;
+}
+.feedItem {
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #dbdbdb;
+    margin-bottom: 15px;
+    
+}
+
+.profileImg{
+    margin-right:7px;
+}
+.profileImg > img {
+    width:48px;
+    height: 48px;
+    border-radius: 100%;
+}
+
+.feedItemHeader {
+    display: flex;
+    padding:10px;
+}
+.profileText > p {
+    line-height:90%;
+}
+.profileText > p:first-child{
+    font-weight: bold;
+}
+
+.feedItemImg > img {
+    width: 100%;
+}
+
+
+.feedItemContent{
+    padding:10px;
+}
+.feedItemContent > .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedItemContent > p{
+    line-height: 100%;
+}
+
+#commentModal {
+    position: fixed;
+    z-index: 999;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background: rgba(0,0,0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#commentModalContent {
+    width:350px;
+    height:500px;
+    background: #fff;
+    border-radius: 15px;
+    overflow-y: scroll;
+}

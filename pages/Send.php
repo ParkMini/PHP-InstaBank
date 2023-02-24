@@ -66,7 +66,7 @@ $otherAccCount = isset($otherAccountList) ?count($otherAccountList) : 0;
 
     <div class="col-6">
         <h5>송금 받을 계좌(<?=$otherAccCount?>)</h5>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" id="otherAccount">
             <option selected>송금할 계좌를 선택해주세요</option>
             <?php
             if(isset($otherAccountList)){
@@ -130,15 +130,23 @@ $otherAccCount = isset($otherAccountList) ?count($otherAccountList) : 0;
         }
         $('#balance').html(balance)
     })
+    
+    $('#otherAccount').on('change', function(){
+    const fromId = $(this).val();
+    currentAccount = {
+        ...currentAccount,
+        fromId
+    }
+})
 
     /**
      * 송금함수
      * --
      */
     function handleSend(){
-        const {id, balance} = currentAccount;
+        const {id, balance, fromId} = currentAccount;
         const price = $('#price').val();
-        if(!id){
+        if(!id || !fromId){
             alert('계좌를 선택해주세요.');
             return;
         }
@@ -154,19 +162,19 @@ $otherAccCount = isset($otherAccountList) ?count($otherAccountList) : 0;
         }
 
         const newData = {
-            toId: '',
-            fromId: '',
-            sendPrice: 0
+            to_id: id,
+            from_id: fromId,
+            send_price: price,
         }
 
         $.ajax({
-            method:'post',
-            url: '/account/history',
+            method: 'post',
+            url: '/api/account/history',
             data: newData,
             dataType: 'json',
             success: (response) => {
                 console.log("res : " + response);
-                alert('송금되었습니다.')
+                alert('송금되었습니다.');
             },
             error: (err) => {
                 console.log("error : " + err);
